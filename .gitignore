@@ -126,3 +126,9 @@ dmypy.json
 
 /data-dev.sqlite
 
+.gitignore
+.idea/dataSources.local.xml
+.idea/dataSources/
+.idea/workspace.xml
+data-dev.sqlite
+migrations/
