@@ -6,10 +6,10 @@ print(basedir)
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     # SECRET_KEY = 'hard to guess string'
-    # MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.163.com')
-    MAIL_SERVER = 'smtp.163.com'
-    # MAIL_PORT = int(os.environ.get('MAIL_PORT', '465'))
-    MAIL_PORT =  25
+    MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.163.com')
+    # MAIL_SERVER = 'smtp.163.com'
+    MAIL_PORT = int(os.environ.get('MAIL_PORT', '25'))
+    # MAIL_PORT =  25
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in \
         ['true', 'on', '1']
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME','zhb_zabbix@163.com')
