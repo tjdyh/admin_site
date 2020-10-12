@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}NS - Index{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello</h1>
+    {% for item in ns_list %}
+        <p>{{ item.ns_name }} - <a href="{{ item.ns_addr }}" target="_blank">点击这里登录</a> </p>
+    {% endfor %}
+</div>
+{% endblock %}

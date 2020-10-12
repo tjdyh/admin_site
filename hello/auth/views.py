@@ -4,14 +4,16 @@ from . import auth
 from .. import db
 from ..models import User
 from ..email import send_email
-from .forms import LoginForm, RegistrationForm,ChangePasswordForm,PasswordResetForm,ChangeEmailForm
+from .forms import LoginForm, RegistrationForm,ChangePasswordForm,PasswordResetRequestForm,PasswordResetForm,ChangeEmailForm
 
 @auth.before_app_request
-def before_reqquest():
-    if current_user.is_authenticated and not current_user.confirmed and request.endpoint \
+def before_request():
+    if current_user.is_authenticated:
+        current_user.ping()
+        if not current_user.confirmed and request.endpoint \
         and request.blueprint != 'auth' \
         and request.endpoint != 'static':
-        return redirect(url_for('auth.unconfirmed'))
+            return redirect(url_for('auth.unconfirmed'))
 
 @auth.route('/unconfirmed')
 def unconfirmed():
@@ -94,7 +96,7 @@ def change_password():
 def password_reset_request():
     if not current_user.is_anonymous:
         return redirect(url_for('main.index'))
-    form = PasswordResetForm()
+    form = PasswordResetRequestForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data.lower()).first()
         if user:
