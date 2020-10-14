@@ -14,6 +14,6 @@ class RegistrationDomain(FlaskForm):
             raise ValidationError('站点名已定义！')
             # raise ValidationError('Domain name already registered.')
 
-    def has_all(self):
-        ns_all = Domain.query.all()
-        return ns_all
+    # def has_all(self):
+    #     ns_all = Domain.query.all()
+    #     return ns_all

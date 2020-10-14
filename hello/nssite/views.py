@@ -12,10 +12,11 @@ from .forms import RegistrationDomain
 
 @nssite.route('/nslist')
 def nslist():
-    form = RegistrationDomain()
-    ns_list = form.has_all()
-    print(type(ns_list))
-    print(ns_list)
+    ns_list = Domain.query.all()
+    # print(type(ns_list))
+    # print(ns_list)
+    # for i in ns_list:
+    #     print(i.name,i.value)
     return render_template('nssite/nslist.html',ns_list=ns_list)
 
 @nssite.route('/register',methods=['GET','POST'])
